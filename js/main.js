@@ -11,3 +11,48 @@ let $editedTodo; // edytowany Todo
 let $popupInput; //tekst wpisywany w inputa w popup'ie
 let $addPopupBtn; // przycisk "zatwierdź" w popup'ie
 let $closeTodoBtn; //przycisk od zamykania popup'a
+
+const main = () => {
+	prepareDOMElements();
+	prepareDOMEvents();
+};
+
+const prepareDOMElements = () => {
+	$todoInput = document.querySelector(".todo-input");
+	$alertInfo = document.querySelector(".alert-info");
+	$addBtn = document.querySelector(".add-btn");
+	$ulList = document.querySelector(".todo-list ul");
+	$allTasks = document.getElementsByTagName("li");
+	$popup = document.querySelector(".popup");
+	$popupInfo = document.querySelector(".popup-info");
+	$popupInput = document.querySelector(".popup-input");
+	$addPopupBtn = document.querySelector(".accept");
+	$closeTodoBtn = document.querySelector(".cancel");
+};
+
+const prepareDOMEvents = () => {
+	$addBtn.addEventListener("click", addNewTask);
+	$todoInput.addEventListener("keyup", enterCheck);
+};
+
+const addNewTask = () => {
+	if ($todoInput.value !== "") {
+		$idNumber++;
+		$newTask = document.createElement("li");
+		$newTask.innerText = $todoInput.value;
+		$newTask.setAttribute("id", `todo-${$idNumber}`);
+		$ulList.appendChild($newTask);
+		$todoInput.value = "";
+		$alertInfo.innerText = "";
+	} else {
+		$alertInfo.innerText = "Wpisz treść zadania!";
+	}
+};
+
+const enterCheck = () => {
+	if (event.keyCode === 13) {
+		addNewTask();
+	}
+};
+
+document.addEventListener("DOMContentLoaded", main);
