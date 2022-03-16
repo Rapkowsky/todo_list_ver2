@@ -35,6 +35,7 @@ const prepareDOMEvents = () => {
 	$todoInput.addEventListener("keyup", enterCheck);
 	$ulList.addEventListener("click", checkClick);
 	$addPopupBtn.addEventListener("click", changeToDo);
+	$closeTodoBtn.addEventListener("click", closePopup);
 };
 
 const addNewTask = () => {
@@ -121,6 +122,11 @@ const deleteTask = (e) => {
 	if ($allTasks.length === 0) {
 		$alertInfo.innerText = "Brak zadań na liście.";
 	}
+};
+
+const closePopup = () => {
+	$popup.style.display = "none";
+	$popupInfo.innerText = "";
 };
 
 document.addEventListener("DOMContentLoaded", main);
