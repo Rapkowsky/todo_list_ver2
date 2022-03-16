@@ -34,6 +34,7 @@ const prepareDOMEvents = () => {
 	$addBtn.addEventListener("click", addNewTask);
 	$todoInput.addEventListener("keyup", enterCheck);
 	$ulList.addEventListener("click", checkClick);
+	$addPopupBtn.addEventListener("click", changeToDo);
 };
 
 const addNewTask = () => {
@@ -100,6 +101,18 @@ const editTask = (e) => {
 	$popupInput.value = $editedTodo.firstChild.textContent;
 
 	$popup.style.display = "flex";
+};
+
+const changeToDo = () => {
+	if ($popupInput.value !== "" && $popupInput.value !== $editedTodo.firstChild.textContent) {
+		$editedTodo.firstChild.textContent = $popupInput.value;
+		$popupInfo.innerHTML = "";
+		$popup.style.display = "none";
+	} else if ($popupInput.value === $editedTodo.firstChild.textContent) {
+		$popupInfo.innerHTML = "Treść nie może być taka sama";
+	} else {
+		$popupInfo.innerHTML = "Musisz podać jakąś treść";
+	}
 };
 
 const deleteTask = (e) => {
