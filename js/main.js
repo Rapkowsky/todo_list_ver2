@@ -86,11 +86,20 @@ const checkClick = (e) => {
 			e.target.closest("button").classList.toggle("completed");
 		} else if (e.target.closest("button").classList.contains("edit")) {
 			e.target.closest("button").classList.toggle("completed");
+			editTask(e);
 		} else if (e.target.closest("button").classList.contains("delete")) {
 			e.target.closest("button").classList.toggle("completed");
 			deleteTask(e);
 		}
 	}
+};
+
+const editTask = (e) => {
+	const oldToDo = e.target.closest("li").id;
+	$editedTodo = document.getElementById(oldToDo);
+	$popupInput.value = $editedTodo.firstChild.textContent;
+
+	$popup.style.display = "flex";
 };
 
 const deleteTask = (e) => {
