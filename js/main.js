@@ -44,6 +44,7 @@ const addNewTask = () => {
 		$ulList.appendChild($newTask);
 		$todoInput.value = "";
 		$alertInfo.innerText = "";
+		createToolsArea();
 	} else {
 		$alertInfo.innerText = "Wpisz treść zadania!";
 	}
@@ -53,6 +54,28 @@ const enterCheck = () => {
 	if (event.keyCode === 13) {
 		addNewTask();
 	}
+};
+
+const createToolsArea = () => {
+	const toolsPanel = document.createElement("div");
+	toolsPanel.classList.add("tools");
+	$newTask.appendChild(toolsPanel);
+
+	const completeBtn = document.createElement("button");
+	completeBtn.classList.add("complete");
+	completeBtn.innerHTML = `<ion-icon name="checkmark-circle"></ion-icon>`;
+
+	const editBtn = document.createElement("button");
+	editBtn.classList.add("edit");
+	editBtn.innerHTML = `<ion-icon name="create"></ion-icon>`;
+
+	const deleteBtn = document.createElement("button");
+	deleteBtn.classList.add("delete");
+	deleteBtn.innerHTML = `<ion-icon name="close-circle"></ion-icon>`;
+
+	toolsPanel.appendChild(completeBtn);
+	toolsPanel.appendChild(editBtn);
+	toolsPanel.appendChild(deleteBtn);
 };
 
 document.addEventListener("DOMContentLoaded", main);
